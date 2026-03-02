@@ -52,22 +52,22 @@ VALUES (
 SELECT * FROM books
 
 INSERT INTO books (
-id,
-title,
-author,
-retail_price
+	id,
+	title,
+	author,
+	retail_price
 )
 VALUES 
-(2,'Lalka','Boleslaw Prus',70),
-(3,'Harry Potter','J.K Rowling',30),
-(4,'Dziady cz.3','Adam Mickiewicz',40)
+	(2,'Lalka','Boleslaw Prus',70),
+	(3,'Harry Potter','J.K Rowling',30),
+	(4,'Dziady cz.3','Adam Mickiewicz',40)
 
 UPDATE books
-SET retail_price = 45
-WHERE title = 'Harry Potter'
+	SET retail_price = 45
+	WHERE title = 'Harry Potter'
 
 DELETE FROM books
-WHERE title = 'Dziady cz.3'
+	WHERE title = 'Dziady cz.3'
 
 /*------------SELECT QUERIES-------------*/
 
@@ -75,4 +75,33 @@ USE MyDatabase
 
 SELECT * FROM customers
 
+SELECT first_name,country FROM customers
 
+SELECT * FROM customers
+WHERE country = 'Germany'
+
+SELECT * FROM customers
+WHERE score > 400
+
+SELECT * FROM customers
+WHERE country = 'USA' and score > 500
+
+SELECT * FROM customers
+WHERE country = 'Germany' or score > 700
+
+SELECT * FROM customers
+ORDER BY score DESC
+
+SELECT TOP 3 * FROM customers
+ORDER BY score DESC
+
+SELECT DISTINCT country FROM customers
+
+SELECT first_name AS 'Customer Name', score AS 'Loyalty Score' FROM customers
+
+USE SalesDB
+SELECT * FROM Sales.Customers
+WHERE LastName is NULL
+
+SELECT * FROM Sales.Customers
+WHERE LastName is NOT NULL
