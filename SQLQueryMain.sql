@@ -1,6 +1,8 @@
-USE ClaudeDB
+/*-------------Claude exercises-------------*/
 
-/* -------------DDL--------------*/
+--------------DDL---------------
+
+USE ClaudeDB
 
 ALTER TABLE employees
 ADD	email VARCHAR(100) NOT NULL
@@ -34,7 +36,7 @@ CREATE TABLE staff (
 	REFERENCES departments(dept_id)
 )
 
-/*-------------DML---------------*/
+--------------DML--------------
 
 INSERT INTO books (
 	id,
@@ -69,7 +71,7 @@ UPDATE books
 DELETE FROM books
 	WHERE title = 'Dziady cz.3'
 
-/*------------SELECT QUERIES-------------*/
+----------Select Queries-----------
 
 USE MyDatabase
 
@@ -98,10 +100,10 @@ ORDER BY score DESC
 SELECT DISTINCT country FROM customers
 
 SELECT first_name AS 'Customer Name', score AS 'Loyalty Score' FROM customers
-
 USE SalesDB
 SELECT * FROM Sales.Customers
 WHERE LastName is NULL
 
 SELECT * FROM Sales.Customers
 WHERE LastName is NOT NULL
+
