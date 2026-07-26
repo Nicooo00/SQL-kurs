@@ -39,6 +39,7 @@ Można wskazywac na wiecej niz 1 kolumne np.
 tutaj i ZamowienieID jak i PozycjaID musza byc unikalne i nie zawierac NULL'a
 */
 
+-------------------------------------------------------------------------------------------------------------------------------
 SELECT*
 FROM dbo.persons
 

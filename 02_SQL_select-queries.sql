@@ -31,6 +31,7 @@ SELECT
 FROM dbo.customers
 WHERE country = 'Germany' --uzywamy '' gdy porownujemy ze string values
 
+-------------------------------------------------------------------------------------------------------------------------------------
 /*task: Retrive all customers and sort the results by the highest score first*/
 SELECT 
 first_name,
@@ -56,7 +57,10 @@ ORDER BY
 	country ASC,
 	score DESC  -- mozliwe jest sortowanie w po wiecej niz jednym warunku, w tym przypadku najpierw sortujemy po country a potem po score
 
-/* GROUP BY
+----------------------------------------------------------------------------------------------------------------------------------------
+
+/* 
+GROUP BY
 dziala nieco dziwnie na pierwszy rzut oka,
 pod from jesli damy GROUP BY, np country to wtedy SQL
 wie ze ma zgrupowac wiersze po np country i wyswietlic dla nich
@@ -64,7 +68,8 @@ agregacje, które piszemy z kolei jeszcze nad FROM
 ex.
 JOHN GERMANY 200
 GINA GERMANY 300
-pokaze: GERMANY 500 */
+pokaze: GERMANY 500
+ */
 
 /*task: Find the total score for each country*/
 SELECT 
@@ -86,7 +91,9 @@ FROM dbo.customers
 GROUP BY country -- dziala to tak jak ma byc. grupujemy po country i wyswietlamy dla tego zgrupowania wszystkie agregacje.
 ORDER BY total_score DESC
 
-/*HAVING
+-------------------------------------------------------------------------------------------------------------------------------------------
+/*
+HAVING
 Używamy HAVING do filtrowania danych PO agregacji (GROUP BY). DO warunku HAVING uzywamy 
 z'agregowanych kolumn
 */
@@ -102,8 +109,9 @@ FROM dbo.customers
 WHERE score != 0
 GROUP BY country
 HAVING AVG(score) > 430 -- nie mozemy dac warunku po 'srednia' poniewaz alias dodaje sie w selectcie a one wykonuja sie pozniej
--- mozna by natomiast dac ORDER BY srenia i to by zadzialo (nie tak samo) poniuewaz ORDER BY wykonuje sie na prawie na koncu
+-- mozna by natomiast dac ORDER BY srenia i to by zadzialo (nie tak samo) poniuewaz ORDER BY wykonuje sie na prawie na koncu (pozniej jest tylko TOP)
 
+---------------------------------------------------------------------------------------------------------------------------------------------
 USE MyDatabase
 GO
 
@@ -143,6 +151,8 @@ FROM dbo.orders
 SELECT TOP 2 *
 FROM dbo.orders
 ORDER BY order_date DESC
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 /*

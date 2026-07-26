@@ -62,3 +62,80 @@ FROM dbo.customers
 
 SELECT*
 FROM dbo.persons
+
+-----------------------------------------------------------------------------------------------------------------------
+/*
+UPTADE syntax:
+
+UPTADE table_name
+SET
+	column1 = value1,
+	column2 = value2
+WHERE <condition>
+
+NOTE: zawsze uzywa sie WHERE aby uniknac aktualizowania WSZYSTKICH wierszy!
+*/
+
+/*task: Change the score of customer with ID 6 to 0 */
+
+UPDATE dbo.customers
+SET	score = 0
+WHERE id = 6 --pamietamy o where condition!
+
+SELECT*
+FROM dbo.customers
+WHERE id = 6
+-- BEST PRACTICE: sprawdz przed wykonaniem za pomoca selecta ktore wiersze zostana zmienione!
+
+/*task: Change the score of customer with ID 10 to 0 and update the country to 'UK'*/
+
+INSERT INTO dbo.customers (id, first_name, country, score)
+VALUES (10, 'Maciek', 'POLAND', 345)
+
+UPDATE dbo.customers
+SET
+	score = 10,
+	country = 'UK'
+WHERE id = 10
+
+SELECT* 
+FROM dbo.customers
+WHERE id = 10   -- sprawdzenie przed wykonaniem UPDATE
+
+/*task: Update all customers with a NULL score by setting their score to 0 */
+
+UPDATE dbo.customers
+SET score = 0
+WHERE score IS NULL  -- tam gdzie cos jest NULL'em
+
+SELECT*
+FROM dbo.customers
+WHERE score IS NULL
+
+---------------------------------------------------------------------------------------------------------------
+/*
+DELETE syntax:
+	DELETE FROM table_name
+	WHERE <condition>
+
+NOTE: tak jak z update zawsze dajemy where condition bo usuniemy WSZYSTKIE wiersze !!
+*/
+
+/*task: Delete all customers with an ID greater than 5 */
+
+DELETE FROM dbo.customers
+WHERE id > 5
+
+SELECT*
+FROM dbo.customers
+WHERE id > 5
+
+/*task: Delete all data from the persons table */
+
+-- mozna uzyc: DELETE FROM dbo.persons ale nie jest to najlepsza praktyka
+TRUNCATE TABLE dbo.persons 
+/* pomija to duzo procesow pod spodem i jest szybsze, delete moze byc dla mniejszych tabel
+ale dla wiekszych TRUNCATE bedzie lepsze */
+SELECT*
+FROM dbo.persons
+-- NOTE: tabela dalej instnieje po tych komendach ale jest pusta
