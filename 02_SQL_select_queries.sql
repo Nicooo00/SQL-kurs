@@ -25,7 +25,7 @@ WHERE score != 0 --dajemy warunek ze score ma byc nierowny 0;
 /*task: Retrieve customers from Germany*/
 
 SELECT 
-id, 
+	id, 
 	first_name,
 	country
 FROM dbo.customers
@@ -102,4 +102,71 @@ FROM dbo.customers
 WHERE score != 0
 GROUP BY country
 HAVING AVG(score) > 430 -- nie mozemy dac warunku po 'srednia' poniewaz alias dodaje sie w selectcie a one wykonuja sie pozniej
--- mozna by natomiast dac ORDER BY srenia i to by zadzialo (nie tak samo) poniuewaz ORDER BY wykonuje sie na koncu
+-- mozna by natomiast dac ORDER BY srenia i to by zadzialo (nie tak samo) poniuewaz ORDER BY wykonuje sie na prawie na koncu
+
+USE MyDatabase
+GO
+
+SELECT*
+FROM dbo.customers
+
+/*task: Return Unique list of all countries*/
+
+SELECT DISTINCT -- distinct zwraca nam wartosci ktore sie pojawiaja tylko raz.
+--np jesli niemcy wystapily 2 razy to pokaza sie raz
+	country
+FROM dbo.customers
+--NOTE: nie używaj distinct chyba ze faktycznie trzeba. zwalnia one zapytania
+
+/*task: Retrieve only 3 Customers */
+SELECT TOP 3 -- Top [value] pokazuje ile gornych wierszy w tabeli wyswietlic
+	id,
+	first_name
+FROM dbo.customers
+
+/* task: Retrieve the Top 3 Customers with the Highest Scores */
+SELECT TOP 3 *
+FROM dbo.customers
+ORDER BY score DESC
+
+/*task: Retrieve the Lowest 2 Customers based on the Score */
+SELECT TOP 2 *
+FROM dbo.customers
+ORDER BY 
+	score ASC,
+	id ASC -- to zadziala dopiero wtedy gbydy np 2 osoby mialy ten sam score to wtedy osoba z nizszym id byla by wyzej
+
+SELECT*
+FROM dbo.orders
+
+/*task: Get the Two Most Recent Orders */
+SELECT TOP 2 *
+FROM dbo.orders
+ORDER BY order_date DESC
+
+
+/*
+CODING ORDER:
+
+SELECT DISTINCT TOP 2
+	Col1,
+	SUM(Col2)
+FROM Table
+WHERE score = 10
+GROUP BY Col1                   --ta co ma byc zgrupowana nie ta po ktorej grupujemy!
+HAVING SUM(Col2) > 30
+ORDER BY Col1 ASC
+
+---------------------------------------
+
+EXECUTE ORDER:
+
+1. FROM
+2. WHERE
+3. GROUP BY   (will start aggregating the data)
+4. HAVING
+5. SELECT (DISTINCT)  -- pod tym kolumny ktore wzkazalismy do zaznaczenia
+6. ORDER BY
+7. TOP
+
+*/
