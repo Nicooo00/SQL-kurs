@@ -5,10 +5,14 @@ uzywamy JOIN 'ow  (<--> tabela jest szersza). Jesli chcemy zlaczyc je po wiersza
 SET Operators (tabela jest dluzsza).
 
 Podstawowe Typy JOIN:
--inner join
--full join
--left join
--right join
+-inner join   // czesc wspolna A i B
+-full join   // A suma B
+-left join   // A czesc wspolna z B (dajemy by miec kolumny z B ;; graficznie cale A)
+-right join  // B czesc wspolna z A (dajemy by miec kolumny z A ;; graficznie cale B)
+
+NOTE:: jesli w key column znajdziemy wiecej niz jedno dopasowanie po id, na przyklad
+jeden klient ma wiecej zamowien to w tymczasowej tabeli zjoinowanej bedzie on wystepowal
+tyle razy ile ma zamowien.
 
 **extra: no join
 
@@ -71,7 +75,7 @@ ON c.id = o.customer_id -- taki jest best practice napisania inner joina dla teg
 /*
 Zwraca wszystkie wiersze z lewej tabeli i tylko pasujace (po key column) wiersze w prawej tabeli.
 Robi sie je aby miec kolumny z tabeli b. Ten join "obsluguje" tez duplikaty. Jesli jakis klient ma
-wiecej niz 1 zamowienie to bedzie w tymczasowej zjoinowanej tabeli wystepowal kilka razy.
+wiecej niz 1 zamowienie to bedzie w tymczasowej zjoinowanej tabeli wystepowal tyle razy ile ma zamowien.
 Dla elementow wystepujacych w A ale nie w B kolumny "dodatkowe" od tabeli B beda mialy
 wartosc NULL (chyba ze uzyjemy funkcji ISNULL() lub COALESCE() ).
 
