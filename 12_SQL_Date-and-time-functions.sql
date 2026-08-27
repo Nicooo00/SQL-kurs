@@ -116,5 +116,56 @@ GROUP BY DATETRUNC(month,CreationTime)
 
 ------------EOMONTH()-----------
 /*
-Zwraca ostatni dzien miesiaca.
+Zwraca ostatni dzien miesiaca (zmienia dzien w dacie na ostatni dzien
+jak wypada w tym miesiacu).
+syntax: EOMONTH(date)
+*/
+
+SELECT
+	CreationTime,
+	DATEPART(day,EOMONTH(CreationTime)) as ostatni_dzien_miesiaca,
+	DATENAME(weekday,EOMONTH(CreationTime)) as ostatni_dzien_nazwa,
+	CAST((DATETRUNC(month,CreationTime)) as DATE) as pierwszy_dzien_miesiaca -- tak mozna
+	-- uzyskac pierwszy dzien miesiaca jako date
+FROM Sales.Orders as o
+
+--------USE CASES--------
+/*task: How many orders were placed each year?*/
+
+SELECT
+	DATEPART(YEAR,OrderDate) as rok,
+	COUNT(*)
+FROM Sales.Orders as o
+GROUP BY DATEPART(YEAR,OrderDate)
+
+SELECT*
+FROM Sales.Orders as o
+
+/*task: How many orders were placed each month?*/
+
+SELECT
+	DATENAME(MONTH,OrderDate) as miesiac,
+	COUNT(*) as NrOfOrders
+FROM Sales.Orders as o
+GROUP BY DATENAME(MONTH,OrderDate)
+
+/*task: Show all orders that were placed during the
+month of february*/
+
+SELECT
+	OrderID,
+	DATENAME(MONTH,OrderDate)
+FROM Sales.Orders as o
+WHERE DATEPART(MONTH,OrderDate) = 2
+--NOTE: zawsze filtrujemy dane po intach a nie po stringach, bo jest szybciej
+
+----------datatype results----------
+/*
+DAY,MONTH,YEAR,DATEPART zwracaja inty
+DATENAME zwraca string
+DATETRUNC zwraca timestamp (Datetime2)
+EOMONTH zwraca date
+
+na materialach na yt jest tabelka ze sciaga
+z all          *Date Parts*
 */
