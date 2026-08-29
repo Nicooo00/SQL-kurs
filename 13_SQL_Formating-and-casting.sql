@@ -1,10 +1,10 @@
 -----------DATE & TIME FUNCTIONS----------
 /*
-YYYY-MM-dd HH:mm:ss - specjany case sensitive format dat w SQL.
+yyyy-MM-dd HH:mm:ss - specjany case sensitive format dat w SQL.
 International Standard (ISO 8601)
 
-MM-dd-YYYY - USA standard
-dd-MM-YYYY - standard Europejski
+MM-dd-yyyy - USA standard
+dd-MM-yyyy - standard Europejski
 
 Formatowanie - zmienianie formatu wartosci na inny format. 
 Zmieniamy jak wygladaja nasze dane.
