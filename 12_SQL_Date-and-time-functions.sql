@@ -55,7 +55,7 @@ SELECT
 	DAY(CreationTime) as dzien
 FROM Sales.Orders as o
 
-------------DATEPART-----------
+------------DATEPART()-----------
 /*
 Zwraca konktretna czesc daty jako liczbe int (na przyklad tygodnie, kwartaly).
 syntax: DATEPART(part,date)
@@ -75,7 +75,7 @@ SELECT
 	YEAR(CreationTime) as rok
 FROM Sales.Orders as o
 
--------------DATENAME------------
+-------------DATENAME()------------
 /*
 Zwraca konktretna czesc daty jako nazwe (na przyklad nazwe miesiaca)
 Syntax podobny jak w datepart tylko zwraca stringi.
@@ -90,7 +90,7 @@ SELECT
 	DATENAME(DAY,CreationTime) as day_dn -- to zwraca stringi nie inty!
 FROM Sales.Orders as o
 
-------------DATETRUNC------------
+------------DATETRUNC()------------
 /*
 Obcina date do okreslonej czesci. 
 Jesli naprzyklad okreslimy dokladnosc do czesci minut to nie bedziemy juz przechowywac
