@@ -137,3 +137,49 @@ SELECT
 	Quantity,
 	Sales / NULLIF(Quantity,0) as sales_price
 FROM Sales.Orders as o
+
+---IS NULL oraz IS NOT NULL---
+/*
+IS NULL zwraca TRUE jesli wartosc jest NULL, przeciwnym FALSA.
+IS NOT NULL zwraca TRUE jesli wartosc nie jest NULL, w przeciwnym FALSA.
+
+syntax: Value IS NULL / VALUE IS NOT NULL
+
+ex.
+Shipping_Address IS NULL -- sprawdza czy jest NULL
+Shipping_Address IS NOT NULL -- sprawdza czy nie jest NULL
+
+*/
+
+---IS NULL USE CASE: Filtering Data---
+/*
+Szukanie NULL w danych.
+*/
+
+/*task: Identify the customers who have no scores*/
+
+SELECT
+	CustomerID,
+	CONCAT(TRIM(FirstName),' ',TRIM(LastName)) as [klienci bez wyniku]
+FROM Sales.Customers
+WHERE Score IS NULL
+
+/*task: Identify the customers who have scores*/
+
+SELECT
+	CustomerID,
+	CONCAT(TRIM(FirstName),' ',TRIM(LastName)) as [klienci z wynikiem]
+FROM Sales.Customers
+WHERE Score IS NOT NULL;
+
+---IS NULL USE CASE: Finding unmatched rows between two tables---
+
+/*task: List all details for customers who have not placed any orders*/
+
+SELECT
+	c.*,
+	o.OrderID
+FROM Sales.Customers as c
+LEFT JOIN Sales.Orders as o
+ON c.CustomerID = o.CustomerID
+WHERE o.CustomerID IS NULL;
