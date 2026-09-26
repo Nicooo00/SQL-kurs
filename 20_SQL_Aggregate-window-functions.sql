@@ -173,3 +173,51 @@ FROM(
 	FROM Sales.Employees
 )t
 WHERE Salary = MaxSalary
+
+/*task: Calculate the deviation of each sales from both the minimum and
+the maximum of the sales amounts */
+
+SELECT
+	Sales,
+	MIN(Sales) OVER() [MinSales],
+	MAX(Sales) OVER() [MaxSales],
+	MAX(Sales) OVER() - Sales [DMAX],
+	Sales - MIN(Sales) OVER() [DMIN]
+FROM Sales.Orders
+
+---USE CASE: Running and rolling total-----
+/*
+- Tracking current sales with target sales,
+- Providing insights into historical patterns
+
+Agreguja sekwencje memberow i agregacja jest ukaktualniana
+za kazdym razem gdy nowy member jest dodany.
+
+RUNNING TOTAL
+Agreguje wszystkie wartosci od poczatku do pewnego punktu bez opuszczania starszych danych
+
+ROLLING TOTAL
+Agreguje wszystkie wartosci w obrebie stale okreslenego okna czasowego np miesiac.
+Za kazdym razem gdy dodamy nowe dane to stare dane bede opuszczane
+*/
+
+/*task: Calculate moving average of sales for each product over time*/
+
+SELECT
+	ProductID,
+	AVG(Sales) OVER(PARTITION BY ProductID
+	ORDER BY OrderDate) [WF(X)],
+	OrderDate,
+	Sales
+FROM Sales.Orders;
+
+/*task: Calculate moving average of sales for each product over time, including only the next order*/
+
+SELECT
+	ProductID,
+	AVG(Sales) OVER(PARTITION BY ProductID
+	ORDER BY OrderDate ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING) [WF(X)],
+	OrderDate,
+	Sales
+FROM Sales.Orders
+
