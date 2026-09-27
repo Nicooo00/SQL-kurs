@@ -56,7 +56,7 @@ SELECT
 TRIM(Category) as Policy1,
 NULLIF(TRIM(Category),'') -- trim wymusza policy1 a wiec sa tylko nulle i empty stringi.
 --wiec mozemy sprytnie tak sprawdzic czy mamy jakies empty string, jesli tak to
---NULLIF zwroci NULL (bo wartosci sa takie same)
+--NULLIF zwroci NULL (bo wartosci sa takie same) Policy 2
 FROM Orders2;
 
 WITH Orders3 AS (
