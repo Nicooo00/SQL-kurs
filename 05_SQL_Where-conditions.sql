@@ -115,3 +115,5 @@ WHERE first_name LIKE '%n'
 SELECT*
 FROM dbo.customers
 WHERE first_name LIKE '__r%'
+
+--extra logical operators: ALL, EXISTS,
