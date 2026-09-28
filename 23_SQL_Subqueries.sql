@@ -213,6 +213,70 @@ AND Salary > ALL
 
 
 
+----------Dependencies of Subqueries----------
+
+/*
+
+Non-Correlated Subquery - podzapytanie ktore moze dzialac niezaleznie od Main Query
+(mozna wykonac bez Main Query)
+Zostanie wykonane tylko raz i wynik bedzie uzyty przez Main Query
+Better performance.
+For static comparisons.
+
+Correlated Subquery - podzapytanie krote polega na wartosciach z Main Query
+(nie mozna wykonac bez Main Query)
+Podzapytanie bedzie wykonywane dla kazdego wiersza (ktore Main Query przeprocesuje).
+Bad performance.
+For row-by-row comparisons or Dynamic Filtering
+
+*/
+
+/*task: Show all customer details and find the orders for each customer*/
+
+SELECT
+	c.*,
+	ISNULL(licznik,0) [licznik]
+FROM Sales.Customers as c
+LEFT JOIN (SELECT CustomerID,COUNT(*) as [licznik] FROM Sales.Orders GROUP BY CustomerID) as o
+ON c.CustomerID = o.CustomerID
+
+
+SELECT
+*,
+(SELECT COUNT(*) [count] FROM Sales.Orders as o WHERE o.CustomerID = c.CustomerID) [totalSales] 
+-- tu jak damy zamiast c.CustomerID np. 1 albo 2 to count zliczy nam ile zamowien ma dany klient
+FROM Sales.Customers as c
+
+
+
+------------EXISTS-----------
+/*
+Sprawdza czy podzapytanie zwraca jakies wiersze.
+
+SYNTAX:
+
+SELECT column1, column2,...
+
+FROM Table2
+
+WHERE EXISTS (SELECT 1 
+			  FROM Table1)
+			  WHERE Table.ID = Table2.ID)
+
+
+*/
+
+/*task: Show the order datails for customers in Germany*/
+
+SELECT
+	OrderID,
+	CustomerID,
+	OrderDate
+FROM Sales.Orders as o
+WHERE EXISTS(SELECT 1 FROM Sales.Customers as c WHERE o.CustomerID = c.CustomerID AND c.Country = 'Germany')
+
+-- mozna dac NOT przed EXISTS i wtedy dostaniemy wszytkich nieNiemcow
+
 
 
 
