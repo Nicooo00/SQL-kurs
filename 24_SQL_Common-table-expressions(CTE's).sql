@@ -290,3 +290,4 @@ nie ma wiecej danych i jest exit z petli.
 NOTE: JOIN w Recursive CTE patrzy tylko na to co wygenerowal POPRZEDNI krok, dlatego nie dodaje wszystkiego od nowa
 za kazdym razem.
 */
+
