@@ -5,8 +5,8 @@ optymalizuja szybkosc naszych zapytan.
 
 Kategorie podzialu indexow:
 Po strukturze:
-	-- Clustered Index
-	-- Non-Clustered Index
+	-- Clustered Index  Fast read, slow write
+	-- Non-Clustered Index Fast write, slower read
 
 Po sposobie przechowywania:
 	-- Rowstore Index
