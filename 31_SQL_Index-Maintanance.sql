@@ -139,6 +139,8 @@ i indexow byly aktualne. Przydatne jest to takze po migracji danych.
 /*
 Fragementacja - nieuzyte miejsce w stronach danych
 (Data Pages), lub strony te sa nieuporzadkowane.
+Nasze indexy moga podlegac fragmentacji przez to ze
+modyfikujemy dane w bazie danych.
 
 Mamy 2 medoty aby temu zaradzic:
 	-- Reorganize
