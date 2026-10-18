@@ -34,8 +34,8 @@ These notes use **T-SQL**, Microsoft SQL Server's SQL dialect.
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/Nicooo00/SQL-kurs.git
-   cd SQL-kurs
+   git clone https://github.com/Nicooo00/sql-learning-notes.git
+   cd sql-learning-notes
    ```
 
 2. Open SSMS and connect to a local learning instance.
