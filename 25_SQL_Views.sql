@@ -106,6 +106,8 @@ uzytkownikom bardziej przyjazne i prostsze do zrozumienia obiekty.
 /*task: Provide a view that combines details from orders, products,customers
 and employees*/
 
+GO
+
 CREATE VIEW Sales.V_Order_Details AS
 (
 SELECT
@@ -127,6 +129,8 @@ ON o.CustomerID = c.CustomerID
 LEFT JOIN Sales.Employees as e
 ON o.SalesPersonID = e.EmployeeID
 )
+
+GO
 ----------------------------------------------------------------------------------
 
 SELECT*

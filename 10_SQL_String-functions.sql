@@ -41,6 +41,8 @@ Usuwa spacje na poczatku i na koncu stringa.
 
 /*task: Find customers whose first name contains leading or trailing spaces*/
 
+USE MyDatabase
+
 SELECT
 	TRIM(first_name) as bez_spacji
 FROM dbo.customers
