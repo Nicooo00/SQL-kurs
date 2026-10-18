@@ -35,10 +35,10 @@ SELECT
 	/ CAST(LAG(SumOfSales) OVER(ORDER BY miesiace) AS FLOAT) * 100,2),0),'%') [(MoM) percentage change]
 FROM(
 SELECT
-	DATENAME(MONTH,OrderDate) [miesiace],
+	DATETRUNC(MONTH,OrderDate) [miesiace],
 	SUM(Sales) [SumOfSales]
 FROM Sales.Orders
-GROUP BY DATENAME(MONTH,OrderDate)
+GROUP BY DATETRUNC(MONTH,OrderDate)
 )t;
 
 SELECT

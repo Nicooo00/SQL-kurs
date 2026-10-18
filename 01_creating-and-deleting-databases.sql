@@ -1,53 +1,18 @@
-/*------------------- USUWANIE BAZ DANYCH PRZEZ SQL Query ---------------------*/
-
-USE master; -- przelacz na baze master ("nie mozemy podciac swojej galezi", gbysmy byli na MyDatabase to nie moglibysmy usunac bazy)
-GO -- mowi by poczekac na wykonanie polecenia zanim server wykona kolejne instukcje
-
-ALTER DATABASE MyDatabase -- bedzie zmieniac baze danych
-SET SINGLE_USER  -- przelacza baze w tryb jednoosobowy
-WITH ROLLBACK IMMEDIATE; -- jesli ktokolwiek jest polaczony z ta baza to przerwij te polacznia,
--- a niezapisane transakcje wycofaj
-GO
-
-DROP DATABASE MyDatabase;
-GO
-
-ALTER DATABASE SalesDB3
-SET SINGLE_USER
-WITH ROLLBACK IMMEDIATE;
-GO
-
-DROP DATABASE SalesDB3;
-GO
-
-ALTER DATABASE AdventureWorks2019
-SET SINGLE_USER
-WITH ROLLBACK IMMEDIATE;
-GO
-
-DROP DATABASE AdventureWorks2019;
-GO
-
-ALTER DATABASE AdventureWorks2025
-SET SINGLE_USER
-WITH ROLLBACK IMMEDIATE;
-GO
-
-DROP DATABASE AdventureWorks2025;
-GO
-
-/*----------------- Dodawanie bazy danych przez SQL Query ----------------*/
+/*-----------------Dodawanie i usuwunie baz danych przez SQL Query----------------*/
 
 
 --- MyDatabase ---
 
-USE master;
-GO
+USE master; -- przelacz na baze master ("nie mozemy podciac swojej galezi", gdybysmy byli na MyDatabase to nie moglibysmy usunac bazy)
+GO -- mowi by poczekac na wykonanie polecenia zanim server wykona kolejne instukcje
 
 -- Drop and recreate the 'MyDatabase' database
 IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'MyDatabase')
 BEGIN
     ALTER DATABASE MyDatabase SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    -- SET SINGLE_USER - przelacza baze w tryb jednoosobowy
+    -- WITH ROLLBACK IMMEDIATE - jesli ktokolwiek jest polaczony z ta baza to przerwij te polacznia,
+    -- a niezapisane transakcje wycofaj
     DROP DATABASE MyDatabase;
 END;
 GO

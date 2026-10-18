@@ -66,7 +66,7 @@ SELECT
 			WHEN o.Sales > 20 THEN 'Medium'
 			ELSE 'Low'
 		END as Category
-	FROM.Sales.Orders as o
+	FROM Sales.Orders as o
 )t
 GROUP BY Category
 ORDER BY TotalSales DESC;

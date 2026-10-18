@@ -84,6 +84,8 @@ CREATE VIEW Sales.V_Monthly_Summary AS
 	GROUP BY DATETRUNC(month,OrderDate)
 )
 
+GO
+
 DROP VIEW dbo.V_Monthly_Summary
 
 --NOTE: W postgresie mozna uzyc komendy CREATE OR REPLACE jak chcemy zupdatowac view
@@ -165,6 +167,8 @@ LEFT JOIN Sales.Employees as e
 ON o.SalesPersonID = e.EmployeeID
 WHERE c.Country != 'USA'
 )
+
+GO
 
 DROP VIEW dbo.V_EU_Sales_Data
 ---------------------------------------------------------------------------------------

@@ -15,7 +15,6 @@ Laczy wiele stringow w jeden.
 */
 
 USE SalesDB
-USE MyDatabase
 
 /*task: Concatenate first name and country into one column*/
 
