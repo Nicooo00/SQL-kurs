@@ -146,11 +146,11 @@ SELECT
 FROM Sales.Orders;
 
 --NOTE: Frame jest kalkulowany w obrebie danego okna! nie wszystkich wierszow tabeli.
---NOTE: ORDER BY ma default frame: ROWN BETWEEN UNBOUNDED PRECIDING AND CURRENT ROW
+--NOTE: ORDER BY ma default frame: RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
 --NOTE: Istnieje forma skrocona dla preciding i current row mianowicie:
 /*
 normal: ROWS BETWEEN CURRENT ROW AND 2 FOLLOWING
-shortened: ROWN 2 FOLLOWING
+shortened: ROWS 2 FOLLOWING
 */
 
 /*task: Find the total sales for each order status, only for two products

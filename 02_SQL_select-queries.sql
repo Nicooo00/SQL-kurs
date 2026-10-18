@@ -77,10 +77,7 @@ SELECT
 	first_name AS imiona,
 	SUM(score) AS total_points
 FROM dbo.customers
-GROUP BY country,first_name -- wpisujemy jaka kulomne chemy miec zgrupowana, a nie po czym grupowac, od tego sa aggregations
--- NOTE!! jesli mamy w naszych seleckcie GROUP BY to SQL nie moze wyswietlic kolumn po ktorych grupujemy, lub nie sa
--- agregacja. Jesli koniecznie chcemy wyswietlic jakas kolumne to mozemy dodac ja do GROUP BY, ale musimy zachować ostrożność
--- poniewaz te np te konkretne zgrupowanie bedzie laczyc tylko osoby w takim samym krajem i nazwiskiem czego raczej nie chcemy.
+GROUP BY country
 
 /*task: podaj laczny score danego kraju i podaj ile ma on klientow*/
 SELECT 
